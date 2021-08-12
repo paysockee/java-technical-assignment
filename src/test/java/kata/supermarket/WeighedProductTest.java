@@ -11,10 +11,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WeighedProductTest {
 
+    private static final String PRODUCT_NAME = "Product name";
+
     @ParameterizedTest
     @MethodSource
     void itemFromWeighedProductHasExpectedUnitPrice(String pricePerKilo, String weightInKilos, String expectedPrice) {
-        final WeighedProduct weighedProduct = new WeighedProduct(new BigDecimal(pricePerKilo));
+        final WeighedProduct weighedProduct = new WeighedProduct(PRODUCT_NAME, new BigDecimal(pricePerKilo));
         final Item weighedItem = weighedProduct.weighing(new BigDecimal(weightInKilos));
         assertEquals(new BigDecimal(expectedPrice), weighedItem.price());
     }

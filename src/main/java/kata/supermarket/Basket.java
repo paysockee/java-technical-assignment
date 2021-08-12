@@ -33,7 +33,7 @@ public class Basket {
         }
 
         private BigDecimal subtotal() {
-            return items.stream().map(Item::price)
+            return items.stream().sorted().map(Item::price)
                     .reduce(BigDecimal::add)
                     .orElse(BigDecimal.ZERO)
                     .setScale(2, RoundingMode.HALF_UP);
@@ -46,12 +46,12 @@ public class Basket {
          *  Think about how Basket could interact with something
          *  which provides that functionality.
          */
-        private BigDecimal discounts() {
+        /*private BigDecimal discounts() {
             return BigDecimal.ZERO;
-        }
+        }*/
 
         private BigDecimal calculate() {
-            return subtotal().subtract(discounts());
+            return subtotal();
         }
     }
 }
